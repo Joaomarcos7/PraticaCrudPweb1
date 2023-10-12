@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Aluno} from "./shared/model/aluno";
+import {Produto} from "./shared/model/produto";
 
 @Component({
   selector: 'app-root',
@@ -8,47 +8,47 @@ import {Aluno} from "./shared/model/aluno";
 })
 export class AppComponent {
   title = 'primeiro-angular-20232';
-  alunos: Aluno[] = [];
-  alunoTratamento: Aluno;
+  produtos: Produto[] = [];
+  produtoTratamento: Produto;
   mensagemErro = '';
-  alunosPesquisa: Array<Aluno> = [];
+  ProdutosPesquisa: Array<Produto> = [];
 
   constructor() {
-    this.alunoTratamento = new Aluno('', '', 0);
+    this.produtoTratamento = new Produto(0,'', '');
   }
 
   cadastrar(): void {
-    if (!this.ehMatriculaCadastrada(this.alunoTratamento.matricula)) {
-      this.alunos.push(this.alunoTratamento);
-      this.alunoTratamento = new Aluno('', '', 0);
+    if (!this.ehIDCadastrado(this.produtoTratamento.id)) {
+      this.produtos.push(this.produtoTratamento);
+      this.produtoTratamento = new Produto(0,'', '');
       this.mensagemErro = '';
     } else {
-      this.mensagemErro = `Matrícula ${this.alunoTratamento.matricula} já cadastrada!`;
+      this.mensagemErro = ` ID : ${this.produtoTratamento.id} já cadastrado!`;
     }
   }
 
-  remover(alunoARemover: Aluno): void {
-    const indxARemover = this.alunos.findIndex(aluno =>
-      aluno.matricula === alunoARemover.matricula);
+  remover(produtoARemover: Produto): void {
+    const indxARemover = this.produtos.findIndex(produto =>
+      produto.id === produtoARemover.id);
 
     if (indxARemover >= 0) {
-      this.alunos.splice(indxARemover, 1);
+      this.produtos.splice(indxARemover, 1);
     }
 
   }
 
-  private ehMatriculaCadastrada(matricula: string): boolean {
-    const alunosRetornados = this.alunos.filter(aluno => aluno.matricula === matricula);
-    return alunosRetornados.length > 0;
+  private ehIDCadastrado(id: number): boolean {
+    const produtosRetornados = this.produtos.filter(produto => produto.id === id);
+    return produtosRetornados.length > 0;
   }
 
   pesquisar(pedacoNome: string) {
     if (pedacoNome.length == 0) {
-      this.alunosPesquisa = [];
+      this.ProdutosPesquisa = [];
     }
-    this.alunos.forEach(aluno => {
-      if (aluno.nome.startsWith(pedacoNome)) {
-        this.alunosPesquisa.push(aluno);
+    this.produtos.forEach(produto => {
+      if (produto.nome.startsWith(pedacoNome)) {
+        this.ProdutosPesquisa.push(produto);
       }
     });
   }

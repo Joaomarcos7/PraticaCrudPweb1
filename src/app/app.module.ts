@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {FormsModule} from "@angular/forms";
-import { MatriculaPipe } from './shared/pipes/matricula.pipe';
+import { IdPipe } from './shared/pipes/Id.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from "@angular/material/card";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -16,7 +16,7 @@ import {MatBadgeModule} from "@angular/material/badge";
 @NgModule({
   declarations: [
     AppComponent,
-    MatriculaPipe
+    IdPipe
   ],
   imports: [
     BrowserModule,
